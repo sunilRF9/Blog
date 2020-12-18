@@ -9,6 +9,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
+images/
 build/
 develop-eggs/
 dist/
@@ -24,6 +25,9 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+*.jpg
+*.png
+*.jpeg
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

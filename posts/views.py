@@ -18,5 +18,8 @@ def index(request):
     return render(request, 'posts/posts.html', context)
 
 def content(request, pid):
-    post = Post.objects.all()
-    return render(request, 'posts/content.html')
+    post = Post.objects.filter(id=pid)
+    #print(post[0].content)
+    post = post[0].content
+    context = {'post': post}
+    return render(request, 'posts/content.html', context)

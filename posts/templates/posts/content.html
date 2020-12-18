@@ -1,6 +1,13 @@
-{% extends "posts/base.html" %}
-{% block content %}
-<h1>Content</h1>
-	{{post.content}}
-	{{post.author.username}}
+{% extends "posts/base.html" %} {% block content %}
+{% load static %}
+
+<div class="col-md-8">
+  <h1 class="mt-4">{{ post.title }}</h1>
+  <p class="lead">
+  <hr>
+
+  <hr>
+  <p class="lead">{{ post.content }}</p>
+  <hr>
+</div>
 {% endblock content %}

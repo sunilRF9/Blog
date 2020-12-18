@@ -10,6 +10,7 @@ class Post(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
+    image = models.ImageField(null=True, blank=True)
     TAGS = [
     ('FB', 'Football'),
     ('RD', 'Rides'),
@@ -22,3 +23,11 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.title} written by {self.author.username}'
+
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
