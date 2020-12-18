@@ -1,0 +1,26 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+  <!-- Page Content -->
+  {% for p in post %}
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Blog Entries Column -->
+      <div class="col-md-8">
+      <div class = "pt-2"></div>
+
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+          <div class="card-body">
+		  <h2 class="card-title">{{p.title}}</h2>
+		  <p class="card-text">{{p.content}}</p>
+		  <a href="{% url 'post' p.id%}" class="btn btn-primary">Read More &rarr;</a>
+          </div>
+	  <!--<div class="card-footer text-muted"> -->
+	  <small class="text-muted">{{ p.date_posted |date:"F d, Y" }}</small>
+          </div>
+        </div>
+	{% endfor %}
+	{% endblock content %}

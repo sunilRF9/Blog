@@ -11,3 +11,12 @@ class PostList(generics.ListAPIView):
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+def index(request):
+    post = Post.objects.all()
+    context = {'post': post}
+    return render(request, 'posts/posts.html', context)
+
+def content(request, pid):
+    post = Post.objects.all()
+    return render(request, 'posts/content.html')
