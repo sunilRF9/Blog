@@ -1,13 +1,11 @@
 {% extends "posts/base.html" %} {% block content %}
 {% load static %}
-
-<div class="col-md-8">
-  <h1 class="mt-4">{{ post.title }}</h1>
-  <p class="lead">
-  <hr>
-
-  <hr>
-  <p class="lead">{{ post.content }}</p>
-  <hr>
+<br>
+<div class="card-header">{{title}}</div>
+<div class="card text-center" >
+  <div class="card-body">
+<p>{{post}}</p>	  
+  </div>
+	<a href="{% url 'home' %}" class="btn btn-danger">Back</a>
 </div>
 {% endblock content %}

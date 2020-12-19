@@ -4,17 +4,16 @@
   <!-- Page Content -->
   {% for p in post %}
   <div class="container">
-
     <div class="row">
 
       <!-- Blog Entries Column -->
       <div class="col-md-8">
-      <div class = "pt-2"></div>
+      <div class = "pt-1"></div>
 
         <!-- Blog Post -->
         <div class="card mb-4">
 <div class="card-footer text-muted">Posted on {{ p.date_posted | date:"F d, Y" }} by<span style="color: #be0;"> {{ p.author }}</span></div>
-		<img class="thumbnail" src="{{MEDIA_URL}} {{ p.imageURL }}">
+		<img class="img-responsive" src="{{MEDIA_URL}} {{ p.imageURL }}">
           <div class="card-body">
 		  <h2 class="card-title">{{p.title}}</h2>
 		  <!-- <p class="card-text">{{p.content}}</p> -->
