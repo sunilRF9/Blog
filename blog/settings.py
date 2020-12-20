@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'posts',
-    'django_elasticsearch_dsl'
+    'posts'
+    #'django_elasticsearch_dsl'
 ]
 
 MIDDLEWARE = [
@@ -103,11 +103,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-ELASTICSEARCH_DSL={
-    'default': {
-        'hosts': 'localhost:9200'
-    },
-}
+#ELASTICSEARCH_DSL={
+#    'default': {
+#        'hosts': 'localhost:9200'
+#    },
+#}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
