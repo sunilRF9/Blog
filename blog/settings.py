@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'posts'
-    #'django_elasticsearch_dsl'
+    'posts',
+#    'django_elasticsearch_dsl',
+    'tinymce'
 ]
 
 MIDDLEWARE = [

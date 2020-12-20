@@ -15,9 +15,10 @@ class PostDocument(Document):
     class Django:
         model = Post 
         fields = [
+            'id',
             'title',
+            'overview',
             'content',
-            'category',
         ]
         # auto_refresh = False
         # queryset_pagination = 5000

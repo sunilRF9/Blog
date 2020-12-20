@@ -1,8 +1,10 @@
 from django.db import models
+from tinymce.models import HTMLField
 from django.utils import timezone
 import uuid
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.urls import reverse
 
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -22,12 +24,14 @@ class Post(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     overview = models.TextField()
-    content = models.TextField()
+    content = HTMLField()
     comments = models.IntegerField(default=0)
     date_posted = models.DateTimeField(default=timezone.now)
     image = models.ImageField(null=True, blank=True)
     category = models.ManyToManyField(Category)
     featured = models.BooleanField()
+    previous_post = models.ForeignKey('self', on_delete=models.SET_NULL, blank=True, null=True, related_name='previous')
+    next_post = models.ForeignKey('self', on_delete=models.SET_NULL, blank=True, null=True, related_name='next')
 
     def __str__(self):
         return f'{self.title}' 
@@ -39,3 +43,6 @@ class Post(models.Model):
         except:
             url = ''
         return url
+    
+    def get_absolute_url(self):
+        return reverse('post-detail', kwargs={'id':self.id})

@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.db.models import Count, Q
 from rest_framework.response import Response
 from .models import Post
 from .serializers import PostSerializer
@@ -21,6 +22,9 @@ def index(request):
     return render(request, 'index.html', context)
 
 def blog(request):
+    cat_count = category_count()
+    print(cat_count)
+    recent = Post.objects.order_by('-date_posted')[:3]
     post_list = Post.objects.all()
     paginator = Paginator(post_list, 4)
     page_req_var = 'page'
@@ -32,8 +36,28 @@ def blog(request):
     except EmptyPage:
         paginated_qs = paginator.page(paginator.num_pages)
 
-    context = {'queryset': paginated_qs, 'page_req_var': page_req_var}
+    context = {'queryset': paginated_qs, 'page_req_var': page_req_var, 'recent':recent, 'cat_count':cat_count}
     return render(request, 'blog.html', context)
 
-def post(request):
-    return render(request, 'post.html')
+def post(request, id):
+    cat_count = category_count()
+    print(cat_count)
+    recent = Post.objects.order_by('-date_posted')[:3]
+    post = get_object_or_404(Post, id=id)
+    context = {'post':post, 'recent':recent, 'cat_count':cat_count}
+    return render(request, 'post.html', context)
+
+def category_count():
+    qs = Post.objects.values('category__title').annotate(Count('category__title'))
+    return qs
+
+def search(request):
+    qs = Post.objects.all()
+    query = request.GET.get('q')
+    if query:
+        qs = qs.filter(
+                Q(title__icontains=query) |
+                Q(overview__icontains=query)
+                ).distinct()
+        context = {'queryset':qs}
+    return render(request, 'search_results.html', context)
