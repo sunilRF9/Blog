@@ -4,9 +4,10 @@
 {% block content %}
 
 <h2>This is the results of your search</h2>
+    <br/>
 {% for post in queryset %}
-<a href="{{post.get_absolute_url}}">{{ post.title }}</a>
-    <br />
+<h4><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h4>
+    <br/>
 {% endfor %}
 
 {% endblock %}

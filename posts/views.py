@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Count, Q
 from rest_framework.response import Response
 from .models import Post
@@ -60,4 +60,6 @@ def search(request):
                 Q(overview__icontains=query)
                 ).distinct()
         context = {'queryset':qs}
-    return render(request, 'search_results.html', context)
+        return render(request, 'search_results.html', context)
+    else:
+        return render(request, 'index.html')
