@@ -14,12 +14,12 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
 
 def index(request):
     post = Post.objects.all()
-    context = {'post': post}
-    return render(request, 'posts/posts.html', context)
+    #context = {'post': post}
+    return render(request, 'index.html')
 
-def content(request, pid):
-    post = Post.objects.filter(id=pid)
-    title = post[0].title
-    post = post[0].content
-    context = {'post': post, 'title': title}
-    return render(request, 'posts/index.html', context)
+def content(request):
+    #post = Post.objects.filter(id=pid)
+    #title = post[0].title
+    #post = post[0].content
+    #context = {'post': post, 'title': title}
+    return render(request, 'blog.html')
