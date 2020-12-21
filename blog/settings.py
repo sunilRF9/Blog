@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'posts',
 #    'django_elasticsearch_dsl',
     'tinymce',
-    'django_redis'
+    'django_redis',
 ]
 
 MIDDLEWARE = [
@@ -123,6 +123,13 @@ CACHE_TTL = 60 * 1
 #        'hosts': 'localhost:9200'
 #    },
 #}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

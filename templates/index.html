@@ -77,7 +77,7 @@
         <div class="row">
           {% for obj in latest %}
           <div class="post col-md-4">
-            <div class="post-thumbnail"><a href="#"><img src="{{ obj.image.url }}" alt="..." class="img-fluid"></a></div>
+		  <div class="post-thumbnail"><a href="{{obj.get_absolute_url}}"><img src="{{ obj.image.url }}" alt="..." class="img-fluid"></a></div>
             <div class="post-details">
               <div class="post-meta d-flex justify-content-between">
                 <div class="date">{{ obj.date_posted|timesince }} Ago</div>
