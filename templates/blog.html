@@ -21,7 +21,7 @@
                     </div>
                   </div><a href="{{ post.get_absolute_url }}">
                     <h3 class="h4">{{ post.title }}</h3></a>
-                  <p class="text-muted">{{ post.overview }}</p>
+                  <p class="text-muted">{{ post.overview|truncatechars:140 }}</p>
                   <footer class="post-footer d-flex align-items-center">
                     <a href="#" class="author d-flex align-items-center flex-wrap">
                       <div class="avatar"><img src="{{ post.author.profile_picture.url }}" alt="..." class="img-fluid"></div>

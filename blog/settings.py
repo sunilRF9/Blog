@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'posts',
 #    'django_elasticsearch_dsl',
-    'tinymce'
+    'tinymce',
+    'django_redis'
 ]
 
 MIDDLEWARE = [
@@ -104,6 +105,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        },
+        "KEY_PREFIX": "sunilblog"
+    }
+}
+
+CACHE_TTL = 60 * 1
+
 #ELASTICSEARCH_DSL={
 #    'default': {
 #        'hosts': 'localhost:9200'
@@ -115,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 

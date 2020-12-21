@@ -5,6 +5,11 @@ from .models import Post
 from .serializers import PostSerializer
 from rest_framework import generics
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.views.decorators.cache import cache_page
+
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 class PostList(generics.ListAPIView):
     queryset = Post.objects.all()
@@ -14,6 +19,7 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
+@cache_page(CACHE_TTL)
 def index(request):
     post = Post.objects.filter(featured=True)
     latest = Post.objects.order_by('-date_posted')[:3]
@@ -21,6 +27,7 @@ def index(request):
             'latest': latest}
     return render(request, 'index.html', context)
 
+@cache_page(CACHE_TTL)
 def blog(request):
     cat_count = category_count()
     print(cat_count)
@@ -39,6 +46,7 @@ def blog(request):
     context = {'queryset': paginated_qs, 'page_req_var': page_req_var, 'recent':recent, 'cat_count':cat_count}
     return render(request, 'blog.html', context)
 
+@cache_page(CACHE_TTL)
 def post(request, id):
     cat_count = category_count()
     print(cat_count)
