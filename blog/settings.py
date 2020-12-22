@@ -67,11 +67,23 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+#postgres://:e5ea1ce4223d8d91474c79047a953c0b0198686676a6d672e2f7d456893f0021@:5432/
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd7bjlsq3i4nj97',
+        'HOST': 'ec2-54-237-135-248.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'eieiufqtpjimus',
+        'PASSWORD': 'e5ea1ce4223d8d91474c79047a953c0b0198686676a6d672e2f7d456893f0021'
     }
 }
 
@@ -94,10 +106,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# 
+
+
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": "redis-12421.c239.us-east-1-2.ec2.cloud.redislabs.com:12421",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
