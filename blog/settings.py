@@ -68,24 +68,38 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
+#Local
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
 
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'uunietsy',
-#        'HOST': 'suleiman.db.elephantsql.com',
+#        'NAME': 'd7bjlsq3i4nj97',
+#        'HOST': 'ec2-54-237-135-248.compute-1.amazonaws.com',
 #        'PORT': 5432,
-#        'USER': 'uunietsy',
-#        'PASSWORD': '6PU7kz2daic67XcfeKkhCapxvTJZ3nQs'
+#        'USER': 'eieiufqtpjimus',
+#        'PASSWORD': 'e5ea1ce4223d8d91474c79047a953c0b0198686676a6d672e2f7d456893f0021'
 #    }
 #}
+
+
+
+#ElephantSql
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'uunietsy',
+        'HOST': 'suleiman.db.elephantsql.com',
+        'PORT': 5432,
+        'USER': 'uunietsy',
+        'PASSWORD': '6PU7kz2daic67XcfeKkhCapxvTJZ3nQs'
+    }
+}
 
 
 # Password validation
@@ -157,5 +171,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR,'static')
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
