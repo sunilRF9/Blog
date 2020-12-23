@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '5qchl2&*v)hr=(prjl#*5q+bwli2ji*5^$)8j$s5&(b%@+jnb3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -68,24 +68,24 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'uunietsy',
-        'HOST': 'suleiman.db.elephantsql.com',
-        'PORT': 5432,
-        'USER': 'uunietsy',
-        'PASSWORD': '6PU7kz2daic67XcfeKkhCapxvTJZ3nQs'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'uunietsy',
+#        'HOST': 'suleiman.db.elephantsql.com',
+#        'PORT': 5432,
+#        'USER': 'uunietsy',
+#        'PASSWORD': '6PU7kz2daic67XcfeKkhCapxvTJZ3nQs'
+#    }
+#}
 
 
 # Password validation
