@@ -69,12 +69,12 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 #Local
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 #DATABASES = {
 #    'default': {
@@ -90,16 +90,16 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 
 #ElephantSql
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'uunietsy',
-        'HOST': 'suleiman.db.elephantsql.com',
-        'PORT': 5432,
-        'USER': 'uunietsy',
-        'PASSWORD': '6PU7kz2daic67XcfeKkhCapxvTJZ3nQs'
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'uunietsy',
+#        'HOST': 'suleiman.db.elephantsql.com',
+#        'PORT': 5432,
+#        'USER': 'uunietsy',
+#        'PASSWORD': '6PU7kz2daic67XcfeKkhCapxvTJZ3nQs'
+#    }
+#}
 
 
 # Password validation
