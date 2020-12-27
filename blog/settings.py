@@ -30,6 +30,7 @@ INSTALLED_APPS = [
 #    'django_elasticsearch_dsl',
     'tinymce',
     'django_redis',
+    'storages',
     'posts'
 ]
 
@@ -69,12 +70,12 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 #Local
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
 
 #DATABASES = {
 #    'default': {
@@ -90,16 +91,16 @@ DATABASES = {
 
 
 #ElephantSql
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'uunietsy',
-#        'HOST': 'suleiman.db.elephantsql.com',
-#        'PORT': 5432,
-#        'USER': 'uunietsy',
-#        'PASSWORD': '6PU7kz2daic67XcfeKkhCapxvTJZ3nQs'
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'uunietsy',
+        'HOST': 'suleiman.db.elephantsql.com',
+        'PORT': 5432,
+        'USER': 'uunietsy',
+        'PASSWORD': os.getenv('BLOG_DATABASE')
+    }
+}
 
 
 # Password validation
@@ -126,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://default:JOEZnwD30aTtHj1kcOPNu9hoTWpD8dpC@redis-12421.c239.us-east-1-2.ec2.cloud.redislabs.com:12421",
+        "LOCATION": os.getenv('BLOG_REDIS'),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
@@ -166,11 +167,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [
-        os.path.join(BASE_DIR,'static')
-]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-MEDIA_URL = '/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+#STATIC_URL = '/static/'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#STATICFILES_DIRS = [
+#        os.path.join(BASE_DIR,'static')
+#]
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#MEDIA_URL = '/images/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_S3_CUSTOM_DOMAIN = os.getenv('AWS_S3_CUSTOM_DOMAIN')
+
+STATIC_URL = 'https://sunilsblog.s3.ap-south-1.amazonaws.com/'
+STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
