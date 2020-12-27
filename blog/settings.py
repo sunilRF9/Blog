@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '5qchl2&*v)hr=(prjl#*5q+bwli2ji*5^$)8j$s5&(b%@+jnb3'
+SECRET_KEY = os.getenv('SECRET_KEY_BLOG')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -66,30 +66,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'blog.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-#Local
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'd7bjlsq3i4nj97',
-#        'HOST': 'ec2-54-237-135-248.compute-1.amazonaws.com',
-#        'PORT': 5432,
-#        'USER': 'eieiufqtpjimus',
-#        'PASSWORD': 'e5ea1ce4223d8d91474c79047a953c0b0198686676a6d672e2f7d456893f0021'
-#    }
-#}
-
-
-
 #ElephantSql
 DATABASES = {
     'default': {
@@ -102,9 +78,6 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -121,9 +94,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#redis-12421.c239.us-east-1-2.ec2.cloud.redislabs.com:12421
-
-
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
@@ -137,21 +107,12 @@ CACHES = {
 
 CACHE_TTL = 60 * 1
 
-#ELASTICSEARCH_DSL={
-#    'default': {
-#        'hosts': 'localhost:9200'
-#    },
-#}
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
-
-# Internationalization
-# https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -163,24 +124,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-#STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#STATICFILES_DIRS = [
-#        os.path.join(BASE_DIR,'static')
-#]
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-#MEDIA_URL = '/images/'
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
-
 AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_S3_CUSTOM_DOMAIN = os.getenv('AWS_S3_CUSTOM_DOMAIN')
 
-STATIC_URL = 'https://sunilsblog.s3.ap-south-1.amazonaws.com/'
+STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.ap-south-1.amazonaws.com/'
 STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
