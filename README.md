@@ -30,10 +30,6 @@
 
 ![2021-01-06_12:33:57](https://user-images.githubusercontent.com/45355098/103739352-8162b180-501b-11eb-89a5-c7d4881a78a7.png)
 
-- Blogpage
-
-![2021-01-06_12:35:19](https://user-images.githubusercontent.com/45355098/103739466-ab1bd880-501b-11eb-8ef1-c86a1eca04ce.png)
-
 - API 
 
 ![2021-01-06_12:32:30](https://user-images.githubusercontent.com/45355098/103739183-4496ba80-501b-11eb-9f31-f90d5cfe9f8c.png)
