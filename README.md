@@ -14,17 +14,9 @@
 
 - The Blog is deployed on `Heroku`. 
 
-- SSL/TLS certificates are added using `Cloudflare`. 
-
-- Has a public facing API which can be accessed at `https://www.sunilbs.com/api/`
-
 - Checkout the blog at [https://sunilbs.com](https://www.sunilbs.com)
 
 #### Screenshots
-
-- Homepage 
-
-![2021-01-06_12:30:47](https://user-images.githubusercontent.com/45355098/103739087-1a44fd00-501b-11eb-8e6f-fa04ea7daabf.png)
 
 - Blogs
 
