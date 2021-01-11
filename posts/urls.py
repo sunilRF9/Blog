@@ -8,5 +8,5 @@ urlpatterns = [
     #path('post/<int:pid>', views.content, name='post')
     path('blog/', views.blog, name='post-list'),
     path('search/', views.search, name='search'),
-    path('post/<id>/', views.post, name='post-detail')
+    path('post/<slug:slug_text>/', views.post, name='post-detail')
 ]

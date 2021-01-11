@@ -53,11 +53,15 @@ def blog(request):
     return render(request, 'blog.html', context)
 
 @cache_page(CACHE_TTL)
-def post(request, id):
+def post(request, slug_text):
     cat_count = category_count()
     print(cat_count)
     recent = Post.objects.order_by('-date_posted')[:3]
-    post = get_object_or_404(Post, id=id)
+    post = Post.objects.filter(slug = slug_text)
+    if post.exists():
+        post = post.first()
+    else:
+        return HttpResponse('<h1> Page not found </h1>')
     context = {'post':post, 'recent':recent, 'cat_count':cat_count}
     return render(request, 'post.html', context)
 

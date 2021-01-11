@@ -5,6 +5,9 @@ import uuid
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.urls import reverse
+from blog.utils import unique_slug_generator
+from django.utils.text import slugify
+from django.db.models.signals import pre_save
 
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -21,6 +24,7 @@ class Category(models.Model):
 
 class Post(models.Model):
     post_id = models.UUIDField(default=uuid.uuid4, editable=False)
+    slug  = models.SlugField(blank=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     overview = models.TextField()
@@ -35,14 +39,12 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.title}' 
-
-    @property
-    def imageURL(self):
-        try:
-            url = self.image.url
-        except:
-            url = ''
-        return url
     
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'id':self.id})
+        return reverse('post-detail', kwargs={'slug_text':self.slug})
+
+def slug_gen(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+pre_save.connect(slug_gen, sender=Post)
