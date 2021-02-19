@@ -67,22 +67,17 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 
 #ElephantSql
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'uunietsy',
-#        'HOST': 'suleiman.db.elephantsql.com',
-#        'PORT': 5432,
-#        'USER': 'uunietsy',
-#        'PASSWORD': os.getenv('BLOG_DATABASE')
-#    }
-#}
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'uunietsy',
+        'HOST': 'suleiman.db.elephantsql.com',
+        'PORT': 5432,
+        'USER': 'uunietsy',
+        'PASSWORD': os.getenv('BLOG_DATABASE')
     }
+}
+
 }
 AUTH_PASSWORD_VALIDATORS = [
     {
